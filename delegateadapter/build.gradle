@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 apply plugin: 'com.github.dcendents.android-maven'
 
 group='com.github.Liverm0r'
@@ -32,4 +33,8 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support:recyclerview-v7:+'
     testImplementation 'junit:junit:4.12'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
 }

@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.delegateadapter.delegate.BaseDelegateAdapter;
+import com.example.delegateadapter.delegate.BaseViewHolder;
 
 import java.util.List;
 
@@ -39,7 +40,7 @@ public class TextDelegateAdapter
     }
 
 
-   final class TextViewHolder extends BaseDelegateAdapter.BaseViewHolder {
+    final class TextViewHolder extends BaseViewHolder {
 
         private TextView tvTitle;
         private TextView tvDescription;
