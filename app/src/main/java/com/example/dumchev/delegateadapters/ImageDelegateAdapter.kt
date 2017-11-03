@@ -1,9 +1,6 @@
 package com.example.dumchev.delegateadapters
 
-import android.view.View
-import com.example.delegateadapter.delegate.SimpleDelegateAdapter
-import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.image_item.view.*
+import kotlinx.android.synthetic.main.image_item.*
 
 /**
  * @author dumchev on 04.11.17.
@@ -11,9 +8,9 @@ import kotlinx.android.synthetic.main.image_item.view.*
 class ImageDelegateAdapter(private val onImageClick: (ImageViewModel) -> Unit)
     : KDelegateAdapter<ImageViewModel>() {
 
-    override fun onInflateItem(view: View, item: ImageViewModel) = with(view) {
-        setOnClickListener { onImageClick(item) }
+    override fun onInflated(item: ImageViewModel, viewHolder: KViewHolder)= with(viewHolder) {
         tv_title.text = item.title
+        img_bg.setOnClickListener { onImageClick(item) }
         img_bg.setImageResource(item.imageRes)
     }
 
