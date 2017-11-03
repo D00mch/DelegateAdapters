@@ -22,14 +22,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rv);
+        Function1<ImageViewModel, Unit> onImageClick = new Function1<ImageViewModel, Unit>() {
+            @Override
+            public Unit invoke(ImageViewModel imageViewModel) {
+                Toast.makeText(MainActivity.this, "image item clicked", Toast.LENGTH_LONG);
+                return null;
+            }
+        };
         CompositeDelegateAdapter adapter = new CompositeDelegateAdapter.Builder()
-            .add(new ImageDelegateAdapter(new Function1<ImageViewModel, Unit>() {
-                @Override
-                public Unit invoke(ImageViewModel imageViewModel) {
-                    Toast.makeText(MainActivity.this, "image item clicked", Toast.LENGTH_LONG);
-                    return null;
-                }
-            }))
+            .add(new ImageDelegateAdapter(onImageClick))
             .add(new TextDelegateAdapter())
             .build();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
