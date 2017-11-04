@@ -1,5 +1,6 @@
 # DelegateAdapters
-Simplify creating recycler view adapters with different view types
+Simplify creating recycler view adapters with different view types.
+This lib is inspired by Hannes Dorfmann [AdapterDelegates](https://github.com/sockeqwe/AdapterDelegates)
 
 ## Dependencies
 
@@ -84,7 +85,7 @@ Use it like base RecyclerView.Adapter:
 ## Example of usage in Kotlin
 
 
-With kotlin delegate adapters become much smaller:
+With Kotlin delegate adapters become much smaller:
 
 ```kotlin
 
