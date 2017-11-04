@@ -1,5 +1,7 @@
-package com.example.dumchev.delegateadapters
+package com.example.dumchev.delegateadapters.adapter
 
+import com.example.dumchev.delegateadapters.R
+import com.example.dumchev.delegateadapters.model.ImageViewModel
 import kotlinx.android.synthetic.main.image_item.*
 
 /**

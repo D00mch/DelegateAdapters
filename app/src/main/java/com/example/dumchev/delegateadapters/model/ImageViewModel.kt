@@ -1,4 +1,4 @@
-package com.example.dumchev.delegateadapters
+package com.example.dumchev.delegateadapters.model
 
 /**
  * @author dumchev on 04.11.17.

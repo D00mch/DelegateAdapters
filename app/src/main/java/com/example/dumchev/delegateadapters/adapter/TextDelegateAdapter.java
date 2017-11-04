@@ -1,4 +1,4 @@
-package com.example.dumchev.delegateadapters;
+package com.example.dumchev.delegateadapters.adapter;
 
 import android.support.annotation.NonNull;
 import android.view.View;
@@ -6,6 +6,8 @@ import android.widget.TextView;
 
 import com.example.delegateadapter.delegate.BaseDelegateAdapter;
 import com.example.delegateadapter.delegate.BaseViewHolder;
+import com.example.dumchev.delegateadapters.R;
+import com.example.dumchev.delegateadapters.model.TextViewModel;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.example.dumchev.delegateadapters
+package com.example.dumchev.delegateadapters.adapter
 
 import android.view.View
 import com.example.delegateadapter.delegate.BaseDelegateAdapter

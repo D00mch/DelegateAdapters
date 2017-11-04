@@ -1,4 +1,4 @@
-package com.example.dumchev.delegateadapters;
+package com.example.dumchev.delegateadapters.model;
 
 import android.support.annotation.NonNull;
 

@@ -7,6 +7,10 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
 import com.example.delegateadapter.delegate.CompositeDelegateAdapter;
+import com.example.dumchev.delegateadapters.adapter.ImageDelegateAdapter;
+import com.example.dumchev.delegateadapters.adapter.TextDelegateAdapter;
+import com.example.dumchev.delegateadapters.model.ImageViewModel;
+import com.example.dumchev.delegateadapters.model.TextViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
