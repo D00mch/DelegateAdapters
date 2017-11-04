@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         Function1<ImageViewModel, Unit> onImageClick = new Function1<ImageViewModel, Unit>() {
             @Override
             public Unit invoke(ImageViewModel imageViewModel) {
-                Toast.makeText(MainActivity.this, "image item clicked", Toast.LENGTH_LONG);
+                Toast.makeText(MainActivity.this, "image item clicked", Toast.LENGTH_LONG).show();
                 return null;
             }
         };
@@ -44,12 +44,13 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < 10; i++) {
             Object item;
             if (random.nextBoolean()) {
-                item = new TextViewModel("title " + i, "description " + i);
+                item = new TextViewModel("Title " + i, "Description " + i);
             } else {
-                item = new ImageViewModel("title " + i, R.mipmap.ic_launcher_round);
+                item = new ImageViewModel("Title " + i, R.mipmap.ic_launcher_round);
             }
             objects.add(item);
         }
+        objects.add(1); // to check that we have warning for item without adapter
         return objects;
     }
 }
