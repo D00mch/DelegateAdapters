@@ -22,7 +22,7 @@ public class CompositeDelegateAdapter extends RecyclerView.Adapter<RecyclerView.
     private final SparseArray<IDelegateAdapter> typeToAdapterMap;
     private @NonNull List<Object> data = new ArrayList<>();
 
-    private CompositeDelegateAdapter(@NonNull SparseArray<IDelegateAdapter> typeToAdapterMap) {
+    protected CompositeDelegateAdapter(@NonNull SparseArray<IDelegateAdapter> typeToAdapterMap) {
         this.typeToAdapterMap = typeToAdapterMap;
     }
 
@@ -38,18 +38,18 @@ public class CompositeDelegateAdapter extends RecyclerView.Adapter<RecyclerView.
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public final RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == EMPTY_VIEW_TYPE) return new EmptyViewHolder(new View(parent.getContext()));
         return typeToAdapterMap.get(viewType).onCreateViewHolder(parent, viewType);
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public final void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         IDelegateAdapter delegateAdapter = typeToAdapterMap.get(getItemViewType(position));
         if (delegateAdapter != null) {
             delegateAdapter.onBindViewHolder(holder, data, position);
         } else {
-            Log.d("DiffAdapter", "empty adapter, possibly AdsItems haven't loaded yet");
+            Log.w(TAG, "can not find adapter for position " + position + ", showing empty view holder");
         }
     }
 
@@ -59,7 +59,7 @@ public class CompositeDelegateAdapter extends RecyclerView.Adapter<RecyclerView.
     }
 
     @Override
-    public int getItemCount() {
+    public final int getItemCount() {
         return data.size();
     }
 
