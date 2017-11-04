@@ -1,5 +1,5 @@
 # DelegateAdapters
-Simplify creating recycler view adapters with different view types.
+Simplify creating recycler view adapters with many different view types.
 This lib is inspired by Hannes Dorfmann [AdapterDelegates](https://github.com/sockeqwe/AdapterDelegates)
 
 ## Dependencies
@@ -70,7 +70,22 @@ public class TextDelegateAdapter
 
 ```
 
-Use it like base RecyclerView.Adapter:
+TextViewModel is just a POJO:
+
+```java
+public class TextViewModel {
+
+    @NonNull public final String title;
+    @NonNull public final String description;
+
+    public TextViewModel(@NonNull String title, @NonNull String description) {
+        this.title = title;
+        this.description = description;
+    }
+}
+```
+
+Now you can use CompositeDelegateAdapter just like base RecyclerView.Adapter, composing it with whatever amount of delegate adapters:
 
 ```java
 
@@ -81,6 +96,9 @@ Use it like base RecyclerView.Adapter:
     recyclerView.setLayoutManager(new LinearLayoutManager(this));
     recyclerView.setAdapter(adapter);
 ```
+
+It current example you will just have two tipes - text and image
+
 
 ## Example of usage in Kotlin
 
