@@ -4,7 +4,7 @@ Simplify creating recycler view adapters with different view types
 ## Dependencies
 
 ```groovy
-compile 'com.github.liverm0r:delegateadapters:v1.05'
+compile 'com.github.liverm0r:delegateadapters:v1.06'
 ```
 
 You also have to add this in your project build.gradle
@@ -80,6 +80,61 @@ Use it like base RecyclerView.Adapter:
     recyclerView.setLayoutManager(new LinearLayoutManager(this));
     recyclerView.setAdapter(adapter);
 ```
+
+## Example of usage in Kotlin
+
+
+With kotlin delegate adapters become much smaller:
+
+```kotlin
+
+class ImageDelegateAdapter(private val onImageClick: (ImageViewModel) -> Unit)
+    : KDelegateAdapter<ImageViewModel>() {
+
+    override fun onInflated(item: ImageViewModel, viewHolder: KViewHolder)= with(viewHolder) {
+        tv_title.text = item.title
+        img_bg.setOnClickListener { onImageClick(item) }
+        img_bg.setImageResource(item.imageRes)
+    }
+
+    override fun isForViewType(items: List<Any>, position: Int) = items[position] is ImageViewModel
+
+    override fun getLayoutId(): Int = R.layout.image_item
+}
+
+```
+
+Check part `wiht(viewHolder)`. This works like basic view holder without creating one. See the [View holder pattern support and caching options](
+https://github.com/Kotlin/KEEP/blob/master/proposals/android-extensions-entity-caching.md
+) for more information.
+
+To enable this, you need to turn on kotlin ext. experimental feature in your module build.gradle file:
+
+```groovy
+androidExtensions {
+    experimental = true
+}
+```
+
+After that you will be able to write some basic kotlin delegate adapter class, like
+
+```kotlin
+abstract class KDelegateAdapter<T> : BaseDelegateAdapter<KDelegateAdapter.KViewHolder, T>() {
+
+    abstract fun onInflated(item: T, viewHolder: KViewHolder)
+
+    final override fun onInflated(view: View, item: T, viewHolder: KViewHolder) {
+        onInflated(item, viewHolder)
+    }
+
+    override fun createViewHolder(parent: View?): KViewHolder {
+        return KViewHolder(parent)
+    }
+
+    class KViewHolder(override val containerView: View?) : BaseViewHolder(containerView), LayoutContainer
+}
+```
+Check the examples in this project.
 
   ## License
 
