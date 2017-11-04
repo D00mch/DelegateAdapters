@@ -97,8 +97,9 @@ Now you can use CompositeDelegateAdapter just like base RecyclerView.Adapter, co
     recyclerView.setAdapter(adapter);
 ```
 
-It current example you will just have two tipes - text and image
+In current example you will just have two types - text and image
 
+![example](https://github.com/Liverm0r/DelegateAdapters/blob/master/feed_example.jpg)
 
 ## Example of usage in Kotlin
 
@@ -158,7 +159,7 @@ Check the examples in this project.
   ## License
 
 ```
-Copyright 2015 Hannes Dorfmann
+Copyright 2017 Artur Dumchev 
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
