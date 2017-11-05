@@ -15,8 +15,8 @@ public interface IDelegateAdapter {
     RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType);
 
     void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder,
-                          @NonNull List<Object> items,
+                          @NonNull List<? extends Object> items,
                           int position);
 
-    boolean isForViewType(@NonNull List<Object> items, int position);
+    boolean isForViewType(@NonNull List<? extends Object> items, int position);
 }

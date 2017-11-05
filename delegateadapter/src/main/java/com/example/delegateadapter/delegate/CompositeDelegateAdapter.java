@@ -13,14 +13,13 @@ import java.util.List;
 /**
  * @author dumchev on 03.11.17.
  */
-
 public class CompositeDelegateAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final String TAG = CompositeDelegateAdapter.class.getSimpleName();
     private static final int EMPTY_VIEW_TYPE = -1;
 
     private final SparseArray<IDelegateAdapter> typeToAdapterMap;
-    private @NonNull List<Object> data = new ArrayList<>();
+    private @NonNull List<? extends Object> data = new ArrayList<>();
 
     protected CompositeDelegateAdapter(@NonNull SparseArray<IDelegateAdapter> typeToAdapterMap) {
         this.typeToAdapterMap = typeToAdapterMap;
@@ -53,7 +52,7 @@ public class CompositeDelegateAdapter extends RecyclerView.Adapter<RecyclerView.
         }
     }
 
-    public void setData(@NonNull List<Object> data) {
+    public void swapData(@NonNull List<? extends Object> data) {
         this.data = data;
         notifyDataSetChanged();
     }
@@ -70,14 +69,6 @@ public class CompositeDelegateAdapter extends RecyclerView.Adapter<RecyclerView.
 
         public Builder() {
             typeToAdapterMap = new SparseArray<>();
-        }
-
-        public Builder addAll(@NonNull List<IDelegateAdapter> adapters) {
-            for(int i = 0; i < adapters.size(); i++) {
-                typeToAdapterMap.put(i, adapters.get(i));
-            }
-            count = adapters.size();
-            return this;
         }
 
         public Builder add(@NonNull IDelegateAdapter delegateAdapter) {

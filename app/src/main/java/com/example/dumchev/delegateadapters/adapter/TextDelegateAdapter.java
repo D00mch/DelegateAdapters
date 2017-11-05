@@ -14,9 +14,8 @@ import java.util.List;
 /**
  * @author dumchev on 03.11.17.
  */
-public class TextDelegateAdapter
-    extends BaseDelegateAdapter<TextDelegateAdapter.TextViewHolder, TextViewModel> {
-
+public class TextDelegateAdapter extends
+    BaseDelegateAdapter<TextDelegateAdapter.TextViewHolder, TextViewModel> {
 
     @Override
     protected void onInflated(@NonNull View view,
@@ -37,12 +36,11 @@ public class TextDelegateAdapter
     }
 
     @Override
-    public boolean isForViewType(@NonNull List<Object> items, int position) {
+    public boolean isForViewType(@NonNull List<? extends Object> items, int position) {
         return items.get(position) instanceof TextViewModel;
     }
 
-
-    final class TextViewHolder extends BaseViewHolder {
+    final static class TextViewHolder extends BaseViewHolder {
 
         private TextView tvTitle;
         private TextView tvDescription;

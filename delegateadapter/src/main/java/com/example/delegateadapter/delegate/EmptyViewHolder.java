@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 /**
  * @author dumchev on 03.11.17.
  */
-
 public class EmptyViewHolder extends RecyclerView.ViewHolder {
 
     public EmptyViewHolder(View itemView) {

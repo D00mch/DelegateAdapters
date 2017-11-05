@@ -6,7 +6,6 @@ import android.view.View;
 /**
  * @author dumchev on 04.11.17.
  */
-
 public class BaseViewHolder extends RecyclerView.ViewHolder {
     private ItemInflateListener listener;
 

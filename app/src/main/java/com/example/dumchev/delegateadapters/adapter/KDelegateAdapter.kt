@@ -8,7 +8,8 @@ import kotlinx.android.extensions.LayoutContainer
 /**
  * @author dumchev on 04.11.17.
  */
-abstract class KDelegateAdapter<T> : BaseDelegateAdapter<KDelegateAdapter.KViewHolder, T>() {
+abstract class KDelegateAdapter<T>
+    : BaseDelegateAdapter<KDelegateAdapter.KViewHolder, T>() {
 
     abstract fun onInflated(item: T, viewHolder: KViewHolder)
 
@@ -20,5 +21,6 @@ abstract class KDelegateAdapter<T> : BaseDelegateAdapter<KDelegateAdapter.KViewH
         return KViewHolder(parent)
     }
 
-    class KViewHolder(override val containerView: View?) : BaseViewHolder(containerView), LayoutContainer
+    class KViewHolder(override val containerView: View?)
+        : BaseViewHolder(containerView), LayoutContainer
 }
