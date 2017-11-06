@@ -20,6 +20,9 @@ public abstract class BaseDelegateAdapter
     @LayoutRes
     abstract protected int getLayoutId();
 
+    /**
+     * @param parent inflated view
+     */
     @NonNull
     abstract protected VH createViewHolder(View parent);
 
