@@ -92,12 +92,13 @@ Now you can use CompositeDelegateAdapter just like base RecyclerView.Adapter, co
     CompositeDelegateAdapter adapter = new CompositeDelegateAdapter.Builder()
         .add(new ImageDelegateAdapter(onImageClick))
         .add(new TextDelegateAdapter())
+        .add(new CheckDelegateAdapter())
         .build();
     recyclerView.setLayoutManager(new LinearLayoutManager(this));
     recyclerView.setAdapter(adapter);
 ```
 
-In current example you will just have two types - text and image
+In current example you will just have three types - text, image, and checkbox
 
 ![example](https://github.com/Liverm0r/DelegateAdapters/blob/master/feed_example.jpg)
 
