@@ -2,9 +2,7 @@ package com.example.delegateadapter.delegate;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.util.SparseArray;
-import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
@@ -16,9 +14,9 @@ import java.util.List;
 public class CompositeDelegateAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final String TAG = CompositeDelegateAdapter.class.getSimpleName();
-    private static final int EMPTY_VIEW_TYPE = -1;
+    private static final int FIRST_VIEW_TYPE = 0;
 
-    private final SparseArray<IDelegateAdapter> typeToAdapterMap;
+    protected final SparseArray<IDelegateAdapter> typeToAdapterMap;
     private @NonNull List<? extends Object> data = new ArrayList<>();
 
     protected CompositeDelegateAdapter(@NonNull SparseArray<IDelegateAdapter> typeToAdapterMap) {
@@ -27,29 +25,33 @@ public class CompositeDelegateAdapter extends RecyclerView.Adapter<RecyclerView.
 
     @Override
     public int getItemViewType(int position) {
-        for (int i = EMPTY_VIEW_TYPE + 1; i < typeToAdapterMap.size(); i++) {
-            IDelegateAdapter delegate = typeToAdapterMap.valueAt(i);
+        for (int i = FIRST_VIEW_TYPE; i < typeToAdapterMap.size(); i++) {
+            final IDelegateAdapter delegate = typeToAdapterMap.valueAt(i);
             if (delegate.isForViewType(data, position)) {
                 return typeToAdapterMap.keyAt(i);
             }
         }
-        return EMPTY_VIEW_TYPE;
+        throw new NullPointerException("Can not get viewType for position " + position);
     }
 
     @Override
     public final RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if (viewType == EMPTY_VIEW_TYPE) return new EmptyViewHolder(new View(parent.getContext()));
         return typeToAdapterMap.get(viewType).onCreateViewHolder(parent, viewType);
     }
 
     @Override
     public final void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        IDelegateAdapter delegateAdapter = typeToAdapterMap.get(getItemViewType(position));
+        final IDelegateAdapter delegateAdapter = typeToAdapterMap.get(getItemViewType(position));
         if (delegateAdapter != null) {
             delegateAdapter.onBindViewHolder(holder, data, position);
         } else {
-            Log.w(TAG, "can not find adapter for position " + position + ", showing empty view holder");
+            throw new NullPointerException("can not find adapter for position " + position);
         }
+    }
+
+    @Override
+    public void onViewRecycled(RecyclerView.ViewHolder holder) {
+        typeToAdapterMap.get(holder.getItemViewType()).onRecycled(holder);
     }
 
     public void swapData(@NonNull List<? extends Object> data) {
@@ -65,7 +67,7 @@ public class CompositeDelegateAdapter extends RecyclerView.Adapter<RecyclerView.
     public static class Builder {
 
         private int count;
-        private SparseArray<IDelegateAdapter> typeToAdapterMap;
+        private final SparseArray<IDelegateAdapter> typeToAdapterMap;
 
         public Builder() {
             typeToAdapterMap = new SparseArray<>();
@@ -77,7 +79,7 @@ public class CompositeDelegateAdapter extends RecyclerView.Adapter<RecyclerView.
         }
 
         public CompositeDelegateAdapter build() {
-            if (count == 0) throw new IllegalArgumentException("register at least one adapter");
+            if (count == 0) throw new IllegalArgumentException("Register at least one adapter");
             return new CompositeDelegateAdapter(typeToAdapterMap);
         }
     }

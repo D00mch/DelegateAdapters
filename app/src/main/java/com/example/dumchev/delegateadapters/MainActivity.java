@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.delegateadapter.delegate.CompositeDelegateAdapter;
+import com.example.dumchev.delegateadapters.adapter.CheckDelegateAdapter;
 import com.example.dumchev.delegateadapters.adapter.ImageDelegateAdapter;
 import com.example.dumchev.delegateadapters.adapter.TextDelegateAdapter;
 
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         CompositeDelegateAdapter adapter = new CompositeDelegateAdapter.Builder()
             .add(new ImageDelegateAdapter(onImageClick))
             .add(new TextDelegateAdapter())
+            .add(new CheckDelegateAdapter())
             .build();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);

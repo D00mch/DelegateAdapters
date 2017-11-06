@@ -13,7 +13,7 @@ import java.util.List;
  * @author dumchev on 03.11.17.
  */
 public abstract class BaseDelegateAdapter
-    <VH extends BaseViewHolder, T> implements IDelegateAdapter  {
+    <VH extends BaseViewHolder, T> implements IDelegateAdapter<VH> {
 
     abstract protected void onInflated(@NonNull View view, @NonNull T item, @NonNull VH viewHolder);
 
@@ -23,11 +23,15 @@ public abstract class BaseDelegateAdapter
     @NonNull
     abstract protected VH createViewHolder(View parent);
 
+    @Override
+    public void onRecycled(VH holder) {
+    }
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View inflatedView = LayoutInflater.from(parent.getContext())
+    public final RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent,
+                                                            int viewType) {
+        final View inflatedView = LayoutInflater.from(parent.getContext())
                                           .inflate(getLayoutId(), parent, false);
         final VH holder = createViewHolder(inflatedView);
         holder.setListener(new BaseViewHolder.ItemInflateListener() {
@@ -40,8 +44,8 @@ public abstract class BaseDelegateAdapter
     }
 
     @Override
-    public void onBindViewHolder(
-        @NonNull RecyclerView.ViewHolder holder,
+    public final void onBindViewHolder(
+        @NonNull VH holder,
         @NonNull List<? extends Object> items,
         int position) {
         ((BaseViewHolder) holder).bind(items.get(position));

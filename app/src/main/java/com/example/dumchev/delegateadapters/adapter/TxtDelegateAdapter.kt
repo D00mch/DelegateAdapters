@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.text_item.*
  */
 class TxtDelegateAdapter : KDelegateAdapter<TextViewModel>() {
 
-    override fun onInflated(item: TextViewModel, viewHolder: KViewHolder) =
+    override fun onBind(item: TextViewModel, viewHolder: KViewHolder) =
             with(viewHolder) {
                 tv_title.text = item.title
                 tv_description.text = item.description

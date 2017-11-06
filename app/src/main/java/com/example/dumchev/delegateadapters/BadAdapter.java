@@ -24,14 +24,14 @@ public class BadAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final int TEXT_VIEW_TYPE = 1;
     private static final int IMAGE_VIEW_TYPE = 2;
 
-    private final List<IViewModel> items;
+    private List<IViewModel> items;
 
     public BadAdapter(List<IViewModel> items) {
         this.items = items;
     }
 
     public int getItemViewType(int position) {
-        final IViewModel item = items.get(position);
+        IViewModel item = items.get(position);
         if (item instanceof TextViewModel) return TEXT_VIEW_TYPE;
         if (item instanceof ImageViewModel) return IMAGE_VIEW_TYPE;
         throw new IllegalArgumentException("Can't find view type for position " + position);
@@ -66,7 +66,8 @@ public class BadAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             imgViewHolder.tvTitle.setText(model.title);
             imgViewHolder.imageView.setImageResource(model.imageRes);
         } else {
-            throw new IllegalArgumentException("Can't create bind holder fro position " + position);
+            throw new IllegalArgumentException(
+                "Can't create bind holder fro position " + position);
         }
     }
 
@@ -75,7 +76,7 @@ public class BadAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return items.size();
     }
 
-    private static final class TextViewHolder extends RecyclerView.ViewHolder {
+    private static class TextViewHolder extends RecyclerView.ViewHolder {
 
         private TextView tvTitle;
         private TextView tvDescription;
@@ -87,7 +88,7 @@ public class BadAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
     }
 
-    private static final class ImageViewHolder extends RecyclerView.ViewHolder {
+    private static class ImageViewHolder extends RecyclerView.ViewHolder {
 
         private TextView tvTitle;
         private ImageView imageView;

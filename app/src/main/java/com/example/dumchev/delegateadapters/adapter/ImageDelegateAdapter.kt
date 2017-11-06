@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.image_item.*
 class ImageDelegateAdapter(private val clickListener: View.OnClickListener)
     : KDelegateAdapter<ImageViewModel>() {
 
-    override fun onInflated(item: ImageViewModel, viewHolder: KViewHolder) =
+    override fun onBind(item: ImageViewModel, viewHolder: KViewHolder) =
             with(viewHolder) {
                 tv_title.text = item.title
                 img_bg.setOnClickListener(clickListener)

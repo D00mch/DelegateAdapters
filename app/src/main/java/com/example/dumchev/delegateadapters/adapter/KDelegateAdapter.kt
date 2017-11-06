@@ -11,10 +11,10 @@ import kotlinx.android.extensions.LayoutContainer
 abstract class KDelegateAdapter<T>
     : BaseDelegateAdapter<KDelegateAdapter.KViewHolder, T>() {
 
-    abstract fun onInflated(item: T, viewHolder: KViewHolder)
+    abstract fun onBind(item: T, viewHolder: KViewHolder)
 
     final override fun onInflated(view: View, item: T, viewHolder: KViewHolder) {
-        onInflated(item, viewHolder)
+        onBind(item, viewHolder)
     }
 
     override fun createViewHolder(parent: View?): KViewHolder {

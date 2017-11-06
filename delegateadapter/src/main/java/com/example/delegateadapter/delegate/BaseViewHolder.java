@@ -13,11 +13,11 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
         super(parent);
     }
 
-    public void setListener(ItemInflateListener listener) {
+    public final void setListener(ItemInflateListener listener) {
         this.listener = listener;
     }
 
-    public void bind(Object item) {
+    public final void bind(Object item) {
         listener.inflated(item, itemView);
     }
 
