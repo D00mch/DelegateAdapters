@@ -18,9 +18,9 @@ public class TextDelegateAdapter extends
     BaseDelegateAdapter<TextDelegateAdapter.TextViewHolder, TextViewModel> {
 
     @Override
-    protected void onInflated(@NonNull View view,
-                              @NonNull TextViewModel item,
-                              @NonNull TextViewHolder viewHolder) {
+    protected void onBindViewHolder(@NonNull View view,
+                                    @NonNull TextViewModel item,
+                                    @NonNull TextViewHolder viewHolder) {
         viewHolder.tvTitle.setText(item.title);
         viewHolder.tvDescription.setText(item.description);
     }

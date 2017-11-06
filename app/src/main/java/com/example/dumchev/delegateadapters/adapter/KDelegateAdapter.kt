@@ -13,7 +13,7 @@ abstract class KDelegateAdapter<T>
 
     abstract fun onBind(item: T, viewHolder: KViewHolder)
 
-    final override fun onInflated(view: View, item: T, viewHolder: KViewHolder) {
+    final override fun onBindViewHolder(view: View, item: T, viewHolder: KViewHolder) {
         onBind(item, viewHolder)
     }
 

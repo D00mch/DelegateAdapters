@@ -15,7 +15,7 @@ import java.util.List;
 public abstract class BaseDelegateAdapter
     <VH extends BaseViewHolder, T> implements IDelegateAdapter<VH> {
 
-    abstract protected void onInflated(@NonNull View view, @NonNull T item, @NonNull VH viewHolder);
+    abstract protected void onBindViewHolder(@NonNull View view, @NonNull T item, @NonNull VH viewHolder);
 
     @LayoutRes
     abstract protected int getLayoutId();
@@ -40,7 +40,7 @@ public abstract class BaseDelegateAdapter
         holder.setListener(new BaseViewHolder.ItemInflateListener() {
             @Override
             public void inflated(Object viewType, View view) {
-                onInflated(view, (T) viewType, holder);
+                onBindViewHolder(view, (T) viewType, holder);
             }
         });
         return holder;
