@@ -27,14 +27,13 @@ allprojects {
 Inherit from BaseDelegateAdapter:
 
 ```java
-public class TextDelegateAdapter
-    extends BaseDelegateAdapter<TextDelegateAdapter.TextViewHolder, TextViewModel> {
-
+public class TextDelegateAdapter extends
+    BaseDelegateAdapter<TextDelegateAdapter.TextViewHolder, TextViewModel> {
 
     @Override
-    protected void onInflated(@NonNull View view,
-                              @NonNull TextViewModel item,
-                              @NonNull TextViewHolder viewHolder) {
+    protected void onBindViewHolder(@NonNull View view,
+                                    @NonNull TextViewModel item,
+                                    @NonNull TextViewHolder viewHolder) {
         viewHolder.tvTitle.setText(item.title);
         viewHolder.tvDescription.setText(item.description);
     }
@@ -44,18 +43,18 @@ public class TextDelegateAdapter
         return R.layout.text_item;
     }
 
+    @NonNull
     @Override
     protected TextViewHolder createViewHolder(View parent) {
         return new TextViewHolder(parent);
     }
 
     @Override
-    public boolean isForViewType(@NonNull List<Object> items, int position) {
+    public boolean isForViewType(@NonNull List<?> items, int position) {
         return items.get(position) instanceof TextViewModel;
     }
 
-
-    final class TextViewHolder extends BaseViewHolder {
+    final static class TextViewHolder extends BaseViewHolder {
 
         private TextView tvTitle;
         private TextView tvDescription;
@@ -88,14 +87,12 @@ public class TextViewModel {
 Now you can use CompositeDelegateAdapter just like base RecyclerView.Adapter, composing it with whatever amount of delegate adapters:
 
 ```java
-
-    CompositeDelegateAdapter adapter = new CompositeDelegateAdapter.Builder()
-        .add(new ImageDelegateAdapter(onImageClick))
-        .add(new TextDelegateAdapter())
-        .add(new CheckDelegateAdapter())
-        .build();
-    recyclerView.setLayoutManager(new LinearLayoutManager(this));
-    recyclerView.setAdapter(adapter);
+        CompositeDelegateAdapter<IViewModel> adapter = new CompositeDelegateAdapter
+            .Builder<IViewModel>()
+            .add(new ImageDelegateAdapter(onImageClick))
+            .add(new TextDelegateAdapter())
+            .add(new CheckDelegateAdapter())
+            .build();
 ```
 
 In current example you will just have three types - text, image, and checkbox
@@ -118,7 +115,7 @@ class ImageDelegateAdapter(private val onImageClick: (ImageViewModel) -> Unit)
         img_bg.setImageResource(item.imageRes)
     }
 
-    override fun isForViewType(items: List<Any>, position: Int) = items[position] is ImageViewModel
+    override fun isForViewType(items: List<*>, position: Int) = items[position] is ImageViewModel
 
     override fun getLayoutId(): Int = R.layout.image_item
 }
