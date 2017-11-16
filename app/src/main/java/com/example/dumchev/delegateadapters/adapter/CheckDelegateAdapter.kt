@@ -22,7 +22,7 @@ class CheckDelegateAdapter : KDelegateAdapter<CheckViewModel>() {
         viewHolder.check_box.setOnCheckedChangeListener(null)
     }
 
-    override fun isForViewType(items: List<out Any>, position: Int) =
+    override fun isForViewType(items: List<*>, position: Int) =
             items[position] is CheckViewModel
 
     override fun getLayoutId(): Int = R.layout.check_item

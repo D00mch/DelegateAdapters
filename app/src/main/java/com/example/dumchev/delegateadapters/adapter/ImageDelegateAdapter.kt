@@ -18,7 +18,7 @@ class ImageDelegateAdapter(private val clickListener: View.OnClickListener)
                 img_bg.setImageResource(item.imageRes)
             }
 
-    override fun isForViewType(items: List<Any>, position: Int) =
+    override fun isForViewType(items: List<*>, position: Int) =
             items[position] is ImageViewModel
 
     override fun getLayoutId(): Int = R.layout.image_item

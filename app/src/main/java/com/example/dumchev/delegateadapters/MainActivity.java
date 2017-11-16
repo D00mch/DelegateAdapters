@@ -1,7 +1,7 @@
 package com.example.dumchev.delegateadapters;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -11,6 +11,7 @@ import com.example.delegateadapter.delegate.CompositeDelegateAdapter;
 import com.example.dumchev.delegateadapters.adapter.CheckDelegateAdapter;
 import com.example.dumchev.delegateadapters.adapter.ImageDelegateAdapter;
 import com.example.dumchev.delegateadapters.adapter.TextDelegateAdapter;
+import com.example.dumchev.delegateadapters.model.IViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,7 +26,8 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "image item clicked", Toast.LENGTH_LONG).show();
             }
         };
-        CompositeDelegateAdapter adapter = new CompositeDelegateAdapter.Builder()
+        CompositeDelegateAdapter<IViewModel> adapter = new CompositeDelegateAdapter
+            .Builder<IViewModel>()
             .add(new ImageDelegateAdapter(onImageClick))
             .add(new TextDelegateAdapter())
             .add(new CheckDelegateAdapter())

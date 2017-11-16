@@ -15,7 +15,7 @@ class TxtDelegateAdapter : KDelegateAdapter<TextViewModel>() {
                 tv_description.text = item.description
             }
 
-    override fun isForViewType(items: List<Any>, position: Int) =
+    override fun isForViewType(items: List<*>, position: Int) =
             items[position] is TextViewModel
 
     override fun getLayoutId(): Int = R.layout.text_item

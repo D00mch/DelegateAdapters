@@ -30,13 +30,14 @@ public class TextDelegateAdapter extends
         return R.layout.text_item;
     }
 
+    @NonNull
     @Override
     protected TextViewHolder createViewHolder(View parent) {
         return new TextViewHolder(parent);
     }
 
     @Override
-    public boolean isForViewType(@NonNull List<? extends Object> items, int position) {
+    public boolean isForViewType(@NonNull List<?> items, int position) {
         return items.get(position) instanceof TextViewModel;
     }
 

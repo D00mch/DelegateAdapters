@@ -13,9 +13,10 @@ import java.util.List;
  * @author dumchev on 03.11.17.
  */
 public abstract class BaseDelegateAdapter
-    <VH extends BaseViewHolder, T> implements IDelegateAdapter<VH> {
+    <VH extends BaseViewHolder, T> implements IDelegateAdapter<VH, T> {
 
-    abstract protected void onBindViewHolder(@NonNull View view, @NonNull T item, @NonNull VH viewHolder);
+    abstract protected void onBindViewHolder(@NonNull View view,
+                                             @NonNull T item, @NonNull VH viewHolder);
 
     @LayoutRes
     abstract protected int getLayoutId();
@@ -49,7 +50,7 @@ public abstract class BaseDelegateAdapter
     @Override
     public final void onBindViewHolder(
         @NonNull VH holder,
-        @NonNull List<? extends Object> items,
+        @NonNull List<T> items,
         int position) {
         ((BaseViewHolder) holder).bind(items.get(position));
     }
