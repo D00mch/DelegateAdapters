@@ -5,7 +5,7 @@ This lib is inspired by Hannes Dorfmann [AdapterDelegates](https://github.com/so
 ## Dependencies
 
 ```groovy
-compile 'com.github.liverm0r:delegateadapters:v1.08'
+compile 'com.github.liverm0r:delegateadapters:v1.09'
 ```
 
 You also have to add this in your project build.gradle
