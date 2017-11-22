@@ -21,9 +21,9 @@ public class DiffUtilCompositeAdapter extends CompositeDelegateAdapter<IComparab
     @Override
     public void swapData(@NonNull List<IComparableItem> data) {
         DiffUtilCallback diffCallback = new DiffUtilCallback(this.data, data);
+        final DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(diffCallback);
         this.data.clear();
         this.data.addAll(data);
-        final DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(diffCallback);
         diffResult.dispatchUpdatesTo(this);
     }
 
