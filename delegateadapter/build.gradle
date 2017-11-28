@@ -1,16 +1,15 @@
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
 apply plugin: 'com.github.dcendents.android-maven'
 
 group='com.github.Liverm0r'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion compileSdk
 
 
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 26
+        minSdkVersion minSdk
+        targetSdkVersion targetSdk
         versionCode 1
         versionName "1.0"
 
@@ -30,10 +29,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'com.android.support:appcompat-v7:26.+'
-    compile 'com.android.support:recyclerview-v7:+'
-    testImplementation 'junit:junit:4.12'
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation "com.android.support:appcompat-v7:$supportLib"
+    compile "com.android.support:recyclerview-v7:$supportLib"
 }
 repositories {
     mavenCentral()
