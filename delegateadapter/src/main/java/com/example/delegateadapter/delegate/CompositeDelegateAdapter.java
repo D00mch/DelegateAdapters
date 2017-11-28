@@ -27,6 +27,7 @@ public class CompositeDelegateAdapter<T> extends RecyclerView.Adapter<RecyclerVi
     public final int getItemViewType(int position) {
         for (int i = FIRST_VIEW_TYPE; i < typeToAdapterMap.size(); i++) {
             final IDelegateAdapter delegate = typeToAdapterMap.valueAt(i);
+            //noinspection unchecked
             if (delegate.isForViewType(data, position)) {
                 return typeToAdapterMap.keyAt(i);
             }

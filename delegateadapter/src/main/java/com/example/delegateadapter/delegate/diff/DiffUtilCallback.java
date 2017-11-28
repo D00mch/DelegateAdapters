@@ -8,12 +8,12 @@ import java.util.List;
 /**
  * @author dumchev on 16.11.17.
  */
-final class DiffUtilCallback extends DiffUtil.Callback {
+public class DiffUtilCallback extends DiffUtil.Callback {
 
     private final List<? extends IComparableItem> oldList;
     private final List<? extends IComparableItem> newList;
 
-    DiffUtilCallback(@NonNull List<? extends IComparableItem> oldList,
+    public DiffUtilCallback(@NonNull List<? extends IComparableItem> oldList,
                      @NonNull List<? extends IComparableItem> newList) {
         this.oldList = oldList;
         this.newList = newList;
