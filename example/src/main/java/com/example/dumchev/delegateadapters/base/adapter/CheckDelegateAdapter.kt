@@ -1,7 +1,8 @@
-package com.example.dumchev.delegateadapters.adapter
+package com.example.dumchev.delegateadapters.base.adapter
 
+import com.example.dumchev.delegateadapters.KDelegateAdapter
 import com.example.dumchev.delegateadapters.R
-import com.example.dumchev.delegateadapters.model.CheckViewModel
+import com.example.dumchev.delegateadapters.base.model.CheckViewModel
 import kotlinx.android.synthetic.main.check_item.*
 
 /**

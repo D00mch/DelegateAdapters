@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">DelegateAdapters</string>
+    <string name="title_activity_base_example">BaseExampleActivity</string>
 </resources>

@@ -1,8 +1,7 @@
-package com.example.dumchev.delegateadapters.model
+package com.example.dumchev.delegateadapters.base.model
 
 import com.example.delegateadapter.delegate.CompositeDelegateAdapter
-import com.example.dumchev.delegateadapters.adapter.CheckDelegateAdapter
-import com.example.dumchev.delegateadapters.adapter.ImageDelegateAdapter
+import com.example.dumchev.delegateadapters.base.adapter.CheckDelegateAdapter
 
 /**
  * @author dumchev on 05.11.17.

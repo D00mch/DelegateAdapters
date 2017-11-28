@@ -1,4 +1,4 @@
-package com.example.dumchev.delegateadapters;
+package com.example.dumchev.delegateadapters.base;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,9 +7,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.dumchev.delegateadapters.model.IViewModel;
-import com.example.dumchev.delegateadapters.model.ImageViewModel;
-import com.example.dumchev.delegateadapters.model.TextViewModel;
+import com.example.dumchev.delegateadapters.R;
+import com.example.dumchev.delegateadapters.base.model.IViewModel;
+import com.example.dumchev.delegateadapters.base.model.ImageViewModel;
+import com.example.dumchev.delegateadapters.base.model.TextViewModel;
 
 import java.util.List;
 

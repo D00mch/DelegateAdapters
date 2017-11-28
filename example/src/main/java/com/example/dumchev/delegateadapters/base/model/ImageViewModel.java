@@ -1,4 +1,4 @@
-package com.example.dumchev.delegateadapters.model;
+package com.example.dumchev.delegateadapters.base.model;
 
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;

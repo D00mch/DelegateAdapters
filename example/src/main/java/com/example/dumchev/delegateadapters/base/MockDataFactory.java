@@ -1,9 +1,10 @@
-package com.example.dumchev.delegateadapters;
+package com.example.dumchev.delegateadapters.base;
 
-import com.example.dumchev.delegateadapters.model.CheckViewModel;
-import com.example.dumchev.delegateadapters.model.IViewModel;
-import com.example.dumchev.delegateadapters.model.ImageViewModel;
-import com.example.dumchev.delegateadapters.model.TextViewModel;
+import com.example.dumchev.delegateadapters.R;
+import com.example.dumchev.delegateadapters.base.model.CheckViewModel;
+import com.example.dumchev.delegateadapters.base.model.IViewModel;
+import com.example.dumchev.delegateadapters.base.model.ImageViewModel;
+import com.example.dumchev.delegateadapters.base.model.TextViewModel;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,7 @@
-package com.example.dumchev.delegateadapters;
+package com.example.dumchev.delegateadapters.base;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -8,22 +9,28 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.delegateadapter.delegate.CompositeDelegateAdapter;
-import com.example.dumchev.delegateadapters.adapter.CheckDelegateAdapter;
-import com.example.dumchev.delegateadapters.adapter.ImageDelegateAdapter;
-import com.example.dumchev.delegateadapters.adapter.TextDelegateAdapter;
-import com.example.dumchev.delegateadapters.model.IViewModel;
+import com.example.dumchev.delegateadapters.R;
+import com.example.dumchev.delegateadapters.base.adapter.CheckDelegateAdapter;
+import com.example.dumchev.delegateadapters.base.adapter.ImageDelegateAdapter;
+import com.example.dumchev.delegateadapters.base.adapter.TextDelegateAdapter;
+import com.example.dumchev.delegateadapters.base.model.IViewModel;
 
-public class MainActivity extends AppCompatActivity {
+import static android.widget.Toast.LENGTH_LONG;
 
+/**
+ * @author dumchev on 28.11.17.
+ */
+
+public class BaseExampleActivity extends AppCompatActivity{
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rv);
+        setContentView(R.layout.activity_base_example);
+        RecyclerView recyclerView = findViewById(R.id.rv);
         View.OnClickListener onImageClick = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "image item clicked", Toast.LENGTH_LONG).show();
+                Toast.makeText(BaseExampleActivity.this, "image item clicked", LENGTH_LONG).show();
             }
         };
         CompositeDelegateAdapter<IViewModel> adapter = new CompositeDelegateAdapter
