@@ -8,39 +8,50 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.delegateadapter.delegate.CompositeDelegateAdapter;
+import com.example.delegateadapter.delegate.diff.DiffUtilCompositeAdapter;
 import com.example.dumchev.delegateadapters.R;
 import com.example.dumchev.delegateadapters.base.adapter.CheckDelegateAdapter;
 import com.example.dumchev.delegateadapters.base.adapter.ImageDelegateAdapter;
 import com.example.dumchev.delegateadapters.base.adapter.TextDelegateAdapter;
-import com.example.dumchev.delegateadapters.base.model.IViewModel;
 
 import static android.widget.Toast.LENGTH_LONG;
 
 /**
  * @author dumchev on 28.11.17.
  */
+public class BaseExampleActivity extends AppCompatActivity {
 
-public class BaseExampleActivity extends AppCompatActivity{
+    private DiffUtilCompositeAdapter adapter;
+    private RecyclerView recyclerView;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base_example);
-        RecyclerView recyclerView = findViewById(R.id.rv);
+
         View.OnClickListener onImageClick = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(BaseExampleActivity.this, "image item clicked", LENGTH_LONG).show();
             }
         };
-        CompositeDelegateAdapter<IViewModel> adapter = new CompositeDelegateAdapter
-            .Builder<IViewModel>()
+
+        adapter = new DiffUtilCompositeAdapter
+            .Builder()
             .add(new ImageDelegateAdapter(onImageClick))
             .add(new TextDelegateAdapter())
             .add(new CheckDelegateAdapter())
             .build();
+
+        recyclerView = findViewById(R.id.rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
         adapter.swapData(MockDataFactory.prepareData());
+    }
+
+
+    public void onGenerateButtonClicked(View view) {
+        adapter.swapData(MockDataFactory.prepareData());
+        recyclerView.scrollToPosition(0);
     }
 }

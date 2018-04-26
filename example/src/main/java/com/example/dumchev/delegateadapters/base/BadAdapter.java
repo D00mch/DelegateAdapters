@@ -15,7 +15,7 @@ import com.example.dumchev.delegateadapters.base.model.TextViewModel;
 import java.util.List;
 
 /**
- * Use {@link com.example.delegateadapter.delegate.CompositeDelegateAdapter}
+ * Use {@link com.example.delegateadapter.delegate.diff.DiffUtilCompositeAdapter}
  *
  * @author dumchev on 05.11.17.
  */
