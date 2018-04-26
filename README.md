@@ -109,7 +109,7 @@ With Kotlin delegate adapters become much smaller:
 class ImageDelegateAdapter(private val onImageClick: (ImageViewModel) -> Unit)
     : KDelegateAdapter<ImageViewModel>() {
 
-    override fun onInflated(item: ImageViewModel, viewHolder: KViewHolder)= with(viewHolder) {
+    override fun onBind(item: ImageViewModel, viewHolder: KViewHolder)= with(viewHolder) {
         tv_title.text = item.title
         img_bg.setOnClickListener { onImageClick(item) }
         img_bg.setImageResource(item.imageRes)
@@ -139,10 +139,10 @@ After that you will be able to write some basic kotlin delegate adapter class, l
 ```kotlin
 abstract class KDelegateAdapter<T> : BaseDelegateAdapter<KDelegateAdapter.KViewHolder, T>() {
 
-    abstract fun onInflated(item: T, viewHolder: KViewHolder)
+    abstract fun onBind(item: T, viewHolder: KViewHolder)
 
-    final override fun onInflated(view: View, item: T, viewHolder: KViewHolder) {
-        onInflated(item, viewHolder)
+    final override fun onBind(view: View, item: T, viewHolder: KViewHolder) {
+        onBind(item, viewHolder)
     }
 
     override fun createViewHolder(parent: View?): KViewHolder {
