@@ -3,11 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/DelegateAdapters.iml" filepath="$PROJECT_DIR$/DelegateAdapters.iml" />
-      <module fileurl="file://$PROJECT_DIR$/DelegateAdapters.iml" filepath="$PROJECT_DIR$/DelegateAdapters.iml" />
+      <module fileurl="file://$PROJECT_DIR$/example/app.iml" filepath="$PROJECT_DIR$/example/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/delegateadapter/delegateadapter.iml" filepath="$PROJECT_DIR$/delegateadapter/delegateadapter.iml" />
-      <module fileurl="file://$PROJECT_DIR$/delegateadapter/delegateadapter.iml" filepath="$PROJECT_DIR$/delegateadapter/delegateadapter.iml" />
-      <module fileurl="file://$PROJECT_DIR$/example/app.iml" filepath="$PROJECT_DIR$/example/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/example/example.iml" filepath="$PROJECT_DIR$/example/example.iml" />
     </modules>
   </component>

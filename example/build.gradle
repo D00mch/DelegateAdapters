@@ -25,12 +25,9 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile project(':delegateadapter')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    compile "com.android.support:recyclerview-v7:$supportLib"
-    compile "com.android.support:appcompat-v7:$supportLib"
-    testCompile 'junit:junit:4.12'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':delegateadapter')
+    implementation "com.android.support:recyclerview-v7:$supportLib"
+    implementation "com.android.support:appcompat-v7:$supportLib"
+    testImplementation 'junit:junit:4.12'
 }

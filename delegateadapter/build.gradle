@@ -28,9 +28,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
     implementation "com.android.support:appcompat-v7:$supportLib"
-    compile "com.android.support:recyclerview-v7:$supportLib"
+    implementation "com.android.support:recyclerview-v7:$supportLib"
 }
 repositories {
     mavenCentral()
