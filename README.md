@@ -1,11 +1,14 @@
 # DelegateAdapters
 Simplify creating recycler view adapters with many different view types.
-This lib is inspired by Hannes Dorfmann [AdapterDelegates](https://github.com/sockeqwe/AdapterDelegates)
+This lib is inspired by Hannes Dorfmann [AdapterDelegates](https://github.com/sockeqwe/AdapterDelegates).
+If you are going to use it with Kotlin, go to the part [Example of usage in Kotlin](https://github.com/Liverm0r/DelegateAdapters/blob/master/README.md#example-of-usage-in-kotlin).
+
+[Article](https://habr.com/post/341738/) about it on Russian.
 
 ## Dependencies
 
 ```groovy
-compile 'com.github.liverm0r:delegateadapters:v1.10'
+compile 'com.github.liverm0r:delegateadapters:v1.11'
 ```
 
 You also have to add this in your project build.gradle
@@ -69,10 +72,10 @@ public class TextDelegateAdapter extends
 
 ```
 
-TextViewModel is just a POJO:
+TextViewModel is just a POJO, implementing IComparableItem to be able to animate it out of the boxh by DiffUtils:
 
 ```java
-public class TextViewModel {
+public class TextViewModel implements IComparableItem {
 
     @NonNull public final String title;
     @NonNull public final String description;
@@ -81,14 +84,17 @@ public class TextViewModel {
         this.title = title;
         this.description = description;
     }
+
+    @Override public Object id() {return title;}
+    @Override public Object content() {return title + description;}
 }
+
 ```
 
 Now you can use CompositeDelegateAdapter just like base RecyclerView.Adapter, composing it with whatever amount of delegate adapters:
 
 ```java
-        CompositeDelegateAdapter<IViewModel> adapter = new CompositeDelegateAdapter
-            .Builder<IViewModel>()
+        adapter = new DiffUtilCompositeAdapter.Builder()
             .add(new ImageDelegateAdapter(onImageClick))
             .add(new TextDelegateAdapter())
             .add(new CheckDelegateAdapter())
@@ -141,11 +147,11 @@ abstract class KDelegateAdapter<T> : BaseDelegateAdapter<KDelegateAdapter.KViewH
 
     abstract fun onBind(item: T, viewHolder: KViewHolder)
 
-    final override fun onBind(view: View, item: T, viewHolder: KViewHolder) {
+    final override fun onBindViewHolder(view: View, item: T, viewHolder: KViewHolder) {
         onBind(item, viewHolder)
     }
 
-    override fun createViewHolder(parent: View?): KViewHolder {
+    override fun createViewHolder(parent: View): KViewHolder {
         return KViewHolder(parent)
     }
 
