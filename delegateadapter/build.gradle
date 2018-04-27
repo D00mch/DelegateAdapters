@@ -1,11 +1,12 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
 
 group='com.github.Liverm0r'
 
 android {
     compileSdkVersion compileSdk
-
 
     defaultConfig {
         minSdkVersion minSdk
@@ -24,6 +25,9 @@ android {
         }
     }
 
+    androidExtensions {
+        experimental = true
+    }
 }
 
 dependencies {

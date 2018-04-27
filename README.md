@@ -1,14 +1,25 @@
 # DelegateAdapters
 Simplify creating recycler view adapters with many different view types.
 This lib is inspired by Hannes Dorfmann [AdapterDelegates](https://github.com/sockeqwe/AdapterDelegates).
-If you are going to use it with Kotlin, go to the part [Example of usage in Kotlin](https://github.com/Liverm0r/DelegateAdapters/blob/master/README.md#example-of-usage-in-kotlin).
 
 [Article](https://habr.com/post/341738/) about it on Russian.
 
 ## Dependencies
 
+for java:
 ```groovy
 compile 'com.github.liverm0r:delegateadapters:v1.11'
+```
+
+for kotlin:
+```groovy
+android {
+    //...
+    androidExtensions {
+        experimental = true
+    }
+}
+compile 'com.github.liverm0r:delegateadapters:v2.0'
 ```
 
 You also have to add this in your project build.gradle
@@ -16,7 +27,7 @@ You also have to add this in your project build.gradle
 ```groovy
 allprojects {
     repositories {
-        ...
+        //...
         maven { url 'https://jitpack.io' }
     }
 }
@@ -24,8 +35,84 @@ allprojects {
 
 [![Build Status](https://travis-ci.org/sockeqwe/AdapterDelegates.svg?branch=master)](https://jitpack.io/#Liverm0r/delegateadapters)
 
+## Example of usage in Kotlin
+
+Write a model, which represents ui data:
+
+```kotlin
+class ImageViewModel(val title: String, @DrawableRes val imageRes: Int) : IComparableItem {
+
+    override fun id(): Any = title
+    override fun content(): Any = title + imageRes
+}
+
+```
+
+ImageViewModel is just a POJO, implementing IComparableItem to be able to animate it out of the box with DiffUtils.
+
+Write a delegate adapter:
+
+```kotlin
+class ImageDelegateAdapter(private val onImageClick: (ImageViewModel) -> Unit)
+    : KDelegateAdapter<ImageViewModel>() {
+
+    override fun onBind(item: ImageViewModel, viewHolder: KViewHolder)= with(viewHolder) {
+        tv_title.text = item.title
+        img_bg.setOnClickListener { onImageClick(item) }
+        img_bg.setImageResource(item.imageRes)
+    }
+
+    override fun isForViewType(items: List<*>, position: Int) = items[position] is ImageViewModel
+
+    override fun getLayoutId(): Int = R.layout.image_item
+}
+
+```
+
+Check part `with(viewHolder)`. This works like basic view holder without creating one. Just override onBind and onCreate methods. See the [View holder pattern support and caching options](
+https://github.com/Kotlin/KEEP/blob/master/proposals/android-extensions-entity-caching.md
+) for more information.
+
+To enable this magic, you need to turn on kotlin ext. experimental feature in your module build.gradle file:
+
+```groovy
+androidExtensions {
+    experimental = true
+}
+```
+
+Now you can use DiffUtilCompositeAdapter just like the base RecyclerView.Adapter, composing it with whatever amount of delegate adapters:
+
+```kotlin
+        adapter = DiffUtilCompositeAdapter.Builder()
+                .add(ImageDelegateAdapter(onImageClick))
+                .add(TextDelegateAdapter())
+                .add(CheckDelegateAdapter())
+                .build()
+```
+
+![example](https://github.com/Liverm0r/DelegateAdapters/blob/master/feed_example.jpg)
 
 ## Example of usage in Java
+
+Write a Model:
+
+```java
+public class TextViewModel implements IComparableItem {
+
+    @NonNull public final String title;
+    @NonNull public final String description;
+
+    public TextViewModel(@NonNull String title, @NonNull String description) {
+        this.title = title;
+        this.description = description;
+    }
+
+    @Override public Object id() {return title;}
+    @Override public Object content() {return title + description;}
+}
+
+```
 
 Inherit from BaseDelegateAdapter:
 
@@ -72,26 +159,7 @@ public class TextDelegateAdapter extends
 
 ```
 
-TextViewModel is just a POJO, implementing IComparableItem to be able to animate it out of the boxh by DiffUtils:
-
-```java
-public class TextViewModel implements IComparableItem {
-
-    @NonNull public final String title;
-    @NonNull public final String description;
-
-    public TextViewModel(@NonNull String title, @NonNull String description) {
-        this.title = title;
-        this.description = description;
-    }
-
-    @Override public Object id() {return title;}
-    @Override public Object content() {return title + description;}
-}
-
-```
-
-Now you can use CompositeDelegateAdapter just like base RecyclerView.Adapter, composing it with whatever amount of delegate adapters:
+And create your CompositeDelegateAdapter (RecyclerView.Adapter):
 
 ```java
         adapter = new DiffUtilCompositeAdapter.Builder()
@@ -101,63 +169,6 @@ Now you can use CompositeDelegateAdapter just like base RecyclerView.Adapter, co
             .build();
 ```
 
-In current example you will just have three types - text, image, and checkbox
-
-![example](https://github.com/Liverm0r/DelegateAdapters/blob/master/feed_example.jpg)
-
-## Example of usage in Kotlin
-
-
-With Kotlin delegate adapters become much smaller:
-
-```kotlin
-
-class ImageDelegateAdapter(private val onImageClick: (ImageViewModel) -> Unit)
-    : KDelegateAdapter<ImageViewModel>() {
-
-    override fun onBind(item: ImageViewModel, viewHolder: KViewHolder)= with(viewHolder) {
-        tv_title.text = item.title
-        img_bg.setOnClickListener { onImageClick(item) }
-        img_bg.setImageResource(item.imageRes)
-    }
-
-    override fun isForViewType(items: List<*>, position: Int) = items[position] is ImageViewModel
-
-    override fun getLayoutId(): Int = R.layout.image_item
-}
-
-```
-
-Check part `wiht(viewHolder)`. This works like basic view holder without creating one. See the [View holder pattern support and caching options](
-https://github.com/Kotlin/KEEP/blob/master/proposals/android-extensions-entity-caching.md
-) for more information.
-
-To enable this, you need to turn on kotlin ext. experimental feature in your module build.gradle file:
-
-```groovy
-androidExtensions {
-    experimental = true
-}
-```
-
-After that you will be able to write some basic kotlin delegate adapter class, like
-
-```kotlin
-abstract class KDelegateAdapter<T> : BaseDelegateAdapter<KDelegateAdapter.KViewHolder, T>() {
-
-    abstract fun onBind(item: T, viewHolder: KViewHolder)
-
-    final override fun onBindViewHolder(view: View, item: T, viewHolder: KViewHolder) {
-        onBind(item, viewHolder)
-    }
-
-    override fun createViewHolder(parent: View): KViewHolder {
-        return KViewHolder(parent)
-    }
-
-    class KViewHolder(override val containerView: View?) : BaseViewHolder(containerView), LayoutContainer
-}
-```
 Check the examples in this project.
 
   ## License
