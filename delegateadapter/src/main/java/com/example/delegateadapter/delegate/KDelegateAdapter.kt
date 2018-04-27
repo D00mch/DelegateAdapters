@@ -1,8 +1,6 @@
-package com.example.dumchev.delegateadapters
+package com.example.delegateadapter.delegate
 
 import android.view.View
-import com.example.delegateadapter.delegate.BaseDelegateAdapter
-import com.example.delegateadapter.delegate.BaseViewHolder
 import kotlinx.android.extensions.LayoutContainer
 
 /**
