@@ -69,7 +69,7 @@ class ImageDelegateAdapter(private val onImageClick: (ImageViewModel) -> Unit)
 
 ```
 
-Check part `with(viewHolder)`. This works like basic view holder without creating one. Just override onBind and onCreate methods. See the [View holder pattern support and caching options](
+Check `with(viewHolder)` part. This works like the basic view holder without creating one. Just override onBind and onCreate methods. See the [View holder pattern support and caching options](
 https://github.com/Kotlin/KEEP/blob/master/proposals/android-extensions-entity-caching.md
 ) for more information.
 
