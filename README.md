@@ -8,7 +8,7 @@ This lib is inspired by Hannes Dorfmann [AdapterDelegates](https://github.com/so
 
 for java:
 ```groovy
-compile 'com.github.liverm0r:delegateadapters:v1.11'
+implementation 'com.github.liverm0r:delegateadapters:v1.11'
 ```
 
 for kotlin:
@@ -19,7 +19,7 @@ android {
         experimental = true
     }
 }
-compile 'com.github.liverm0r:delegateadapters:v2.0'
+implementation 'com.github.liverm0r:delegateadapters:v2.0'
 ```
 
 You also have to add this in your project build.gradle

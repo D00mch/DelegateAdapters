@@ -52,7 +52,7 @@ public class CompositeDelegateAdapter<T> extends RecyclerView.Adapter<RecyclerVi
     }
 
     @Override
-    public void onViewRecycled(RecyclerView.ViewHolder holder) {
+    public void onViewRecycled(@NonNull RecyclerView.ViewHolder holder) {
         //noinspection unchecked
         typeToAdapterMap.get(holder.getItemViewType()).onRecycled(holder);
     }
