@@ -28,7 +28,7 @@ public abstract class BaseDelegateAdapter
     abstract protected VH createViewHolder(View parent);
 
     @Override
-    public void onRecycled(VH holder) {
+    public void onRecycled(@NonNull VH holder) {
     }
 
     @NonNull

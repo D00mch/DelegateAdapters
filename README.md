@@ -8,7 +8,7 @@ If you are going to use it with Kotlin, go to the part [Example of usage in Kotl
 ## Dependencies
 
 ```groovy
-compile 'com.github.liverm0r:delegateadapters:v1.11'
+implementation 'com.github.liverm0r:delegateadapters:v1.12'
 ```
 
 You also have to add this in your project build.gradle
