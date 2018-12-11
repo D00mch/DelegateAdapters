@@ -3,6 +3,7 @@ package com.example.dumchev.delegateadapters.base;
 import com.example.delegateadapter.delegate.diff.IComparableItem;
 import com.example.dumchev.delegateadapters.R;
 import com.example.dumchev.delegateadapters.base.model.CheckViewModel;
+import com.example.dumchev.delegateadapters.base.model.CompositeModel;
 import com.example.dumchev.delegateadapters.base.model.IViewModel;
 import com.example.dumchev.delegateadapters.base.model.ImageViewModel;
 import com.example.dumchev.delegateadapters.base.model.TextViewModel;
@@ -23,13 +24,18 @@ class MockDataFactory {
         Random random = new Random();
         for (int i = 0; i < SIZE; i++) {
             IComparableItem item;
-            int type = random.nextInt(3);
+            int type = random.nextInt(4);
             if (type == 0) {
                 item = new TextViewModel("Title " + i, "Description " + i);
             } else if (type == 1) {
                 item = new ImageViewModel("Title " + i, R.mipmap.ic_launcher_round);
-            } else {
+            } else if (type == 2) {
                 item = new CheckViewModel("You still love this lib", true);
+            } else {
+                item = new CompositeModel(
+                    new ImageViewModel("Title " + i, R.mipmap.ic_launcher_round),
+                    new TextViewModel("Title " + i, "Description " + i)
+                );
             }
             objects.add(item);
         }

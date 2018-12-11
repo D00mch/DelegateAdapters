@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.example.delegateadapter.delegate.diff.DiffUtilCompositeAdapter;
 import com.example.dumchev.delegateadapters.R;
 import com.example.dumchev.delegateadapters.base.adapter.CheckDelegateAdapter;
+import com.example.dumchev.delegateadapters.base.adapter.CompositeDelegateAdapter;
 import com.example.dumchev.delegateadapters.base.adapter.ImageDelegateAdapter;
 import com.example.dumchev.delegateadapters.base.adapter.TextDelegateAdapter;
 
@@ -41,6 +42,7 @@ public class BaseExampleActivity extends AppCompatActivity {
             .add(new ImageDelegateAdapter(onImageClick))
             .add(new TextDelegateAdapter())
             .add(new CheckDelegateAdapter())
+            .add(new CompositeDelegateAdapter(onImageClick))
             .build();
 
         recyclerView = findViewById(R.id.rv);
