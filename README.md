@@ -19,7 +19,7 @@ android {
         experimental = true
     }
 }
-implementation 'com.github.liverm0r:delegateadapters:v2.01'
+implementation 'com.github.liverm0r:delegateadapters:v2.02'
 ```
 
 You also have to add this in your project build.gradle
