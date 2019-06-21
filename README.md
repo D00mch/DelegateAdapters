@@ -93,6 +93,9 @@ Now you can use DiffUtilCompositeAdapter just like the base RecyclerView.Adapter
 
 ![example](https://github.com/Liverm0r/DelegateAdapters/blob/master/feed_example.jpg)
 
+See example in code: [KotlinBaseExampleActivity.kt][1]
+
+[1]: https://github.com/Liverm0r/DelegateAdapters/blob/master/example/src/main/java/com/example/dumchev/delegateadapters/base/KotlinBaseExampleActivity.kt
 
 ## Example of usage in Java
 
@@ -170,7 +173,9 @@ And create your CompositeDelegateAdapter (RecyclerView.Adapter):
             .build();
 ```
 
-Check the examples in this project.
+
+See code-example: [BaseExampleActivity.java][2] 
+[2]: https://github.com/Liverm0r/DelegateAdapters/blob/master/example/src/main/java/com/example/dumchev/delegateadapters/base/BaseExampleActivity.java
 
   ## License
 
