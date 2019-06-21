@@ -1,7 +1,6 @@
 package com.example.dumchev.delegateadapters.base.model
 
-import android.support.annotation.DrawableRes
-
+import androidx.annotation.DrawableRes
 import com.example.delegateadapter.delegate.diff.IComparableItem
 
 /**

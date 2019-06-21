@@ -1,8 +1,9 @@
 package com.example.delegateadapter.delegate.diff;
 
-import android.support.annotation.NonNull;
-import android.support.v7.util.DiffUtil;
 import android.util.SparseArray;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
 
 import com.example.delegateadapter.delegate.CompositeDelegateAdapter;
 import com.example.delegateadapter.delegate.IDelegateAdapter;

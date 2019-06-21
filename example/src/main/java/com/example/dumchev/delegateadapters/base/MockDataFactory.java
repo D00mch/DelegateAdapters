@@ -3,7 +3,6 @@ package com.example.dumchev.delegateadapters.base;
 import com.example.delegateadapter.delegate.diff.IComparableItem;
 import com.example.dumchev.delegateadapters.R;
 import com.example.dumchev.delegateadapters.base.model.CheckViewModel;
-import com.example.dumchev.delegateadapters.base.model.IViewModel;
 import com.example.dumchev.delegateadapters.base.model.ImageViewModel;
 import com.example.dumchev.delegateadapters.base.model.TextViewModel;
 

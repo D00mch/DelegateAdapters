@@ -1,8 +1,8 @@
 package com.example.dumchev.delegateadapters.base.adapter;
 
-import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.TextView;
+import androidx.annotation.NonNull;
 
 import com.example.delegateadapter.delegate.BaseDelegateAdapter;
 import com.example.delegateadapter.delegate.BaseViewHolder;

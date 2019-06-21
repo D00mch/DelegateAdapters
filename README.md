@@ -93,6 +93,7 @@ Now you can use DiffUtilCompositeAdapter just like the base RecyclerView.Adapter
 
 ![example](https://github.com/Liverm0r/DelegateAdapters/blob/master/feed_example.jpg)
 
+
 ## Example of usage in Java
 
 Write a Model:

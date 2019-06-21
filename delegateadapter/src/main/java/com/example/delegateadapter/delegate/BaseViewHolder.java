@@ -1,7 +1,8 @@
 package com.example.delegateadapter.delegate;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * @author dumchev on 04.11.17.

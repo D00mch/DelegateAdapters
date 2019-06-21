@@ -1,13 +1,11 @@
 package com.example.dumchev.delegateadapters.base.model;
 
-import android.support.annotation.NonNull;
-
+import androidx.annotation.NonNull;
 import com.example.delegateadapter.delegate.diff.IComparableItem;
 
 /**
  * @author dumchev on 03.11.17.
  */
-
 public class TextViewModel implements IComparableItem {
 
     @NonNull public final String title;
