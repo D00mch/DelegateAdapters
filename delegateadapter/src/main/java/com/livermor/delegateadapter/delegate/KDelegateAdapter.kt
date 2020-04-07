@@ -6,8 +6,7 @@ import kotlinx.android.extensions.LayoutContainer
 /**
  * @author dumchev on 04.11.17.
  */
-abstract class KDelegateAdapter<T>
-    : BaseDelegateAdapter<KDelegateAdapter.KViewHolder, T>() {
+abstract class KDelegateAdapter<T> : BaseDelegateAdapter<KDelegateAdapter.KViewHolder, T>() {
 
     open fun onCreated(view: View) = Unit
 
