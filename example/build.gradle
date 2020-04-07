@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion compileSdk
@@ -11,7 +11,7 @@ android {
         targetSdkVersion targetSdk
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -27,7 +27,12 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':delegateadapter')
-    implementation "com.android.support:recyclerview-v7:$supportLib"
-    implementation "com.android.support:appcompat-v7:$supportLib"
+    implementation "androidx.recyclerview:recyclerview:$recycler"
+    implementation "androidx.appcompat:appcompat:$androidX"
     testImplementation 'junit:junit:4.12'
+    implementation "androidx.core:core-ktx:$androidX"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
 }
