@@ -1,15 +1,15 @@
-package com.example.dumchev.delegateadapters.base.model
+package com.livermor.dumchev.delegateadapters.base.model
 
-import com.example.delegateadapter.delegate.diff.IComparableItem
+import com.livermor.delegateadapter.delegate.diff.KDiffUtilItem
 
 /**
  * @author dumchev on 11/12/2018.
  */
 data class CompositeModel(
-    val imageViewModel: ImageViewModel,
-    val textViewModel: TextViewModel
-) : IComparableItem {
+    val imageViewModel: ImageItem,
+    val textViewModel: TextItem
+) : KDiffUtilItem {
 
-    override fun id(): Any = "" + imageViewModel.id() + textViewModel.id()
+    override val id: Any = "" + imageViewModel.id() + textViewModel.id()
     override fun content(): Any = this
 }
