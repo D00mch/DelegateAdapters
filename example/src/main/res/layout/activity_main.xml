@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.dumchev.delegateadapters.MainActivity">
+    tools:context="com.livermor.dumchev.delegateadapters.MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv"

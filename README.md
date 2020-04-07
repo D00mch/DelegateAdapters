@@ -19,7 +19,7 @@ android {
         experimental = true
     }
 }
-implementation 'com.github.liverm0r:delegateadapters:v2.03'
+implementation 'com.github.liverm0r:delegateadapters:v2.1'
 ```
 
 You also have to add this in your project build.gradle
@@ -40,36 +40,30 @@ allprojects {
 Write a model, which represents ui data:
 
 ```kotlin
-class ImageViewModel(val title: String, @DrawableRes val imageRes: Int) : IComparableItem {
-
-    override fun id(): Any = title
-    override fun content(): Any = title + imageRes
+data class ImageItem(val title: String, @DrawableRes val imageRes: Int) : KDiffUtilItem {
+    override val id: Any = title
 }
-
 ```
 
-ImageViewModel is just a POJO, implementing IComparableItem to be able to animate it out of the box with DiffUtils.
+ImageItem is just a POJO, implementing DiffUtilItem to be able to animate it out of the box with DiffUtils.
 
 Write a delegate adapter:
 
 ```kotlin
-class ImageDelegateAdapter(private val onImageClick: (ImageViewModel) -> Unit)
-    : KDelegateAdapter<ImageViewModel>() {
+class ImageDelegateAdapter(private val clickListener: View.OnClickListener) : KDelegateAdapter<ImageItem>() {
 
-    override fun onBind(item: ImageViewModel, viewHolder: KViewHolder)= with(viewHolder) {
+    override fun KViewHolder.onBind(item: ImageItem) {
         tv_title.text = item.title
-        img_bg.setOnClickListener { onImageClick(item) }
+        img_bg.setOnClickListener(clickListener)
         img_bg.setImageResource(item.imageRes)
     }
 
-    override fun isForViewType(items: List<*>, position: Int) = items[position] is ImageViewModel
-
+    override fun isForViewType(item: Any) = item is ImageItem
     override fun getLayoutId(): Int = R.layout.image_item
 }
-
 ```
 
-Check `with(viewHolder)` part. This works like the basic view holder without creating one. Just override onBind and onCreate methods. See the [View holder pattern support and caching options](
+Check `KViewHolder.onBind` part. This works like the basic view holder without creating one. Just override onBind and onCreate methods. See the [View holder pattern support and caching options](
 https://github.com/Kotlin/KEEP/blob/master/proposals/android-extensions-entity-caching.md
 ) for more information.
 
@@ -102,12 +96,12 @@ See example in code: [KotlinBaseExampleActivity.kt][1]
 Write a Model:
 
 ```java
-public class TextViewModel implements IComparableItem {
+public class TextItem implements IComparableItem {
 
     @NonNull public final String title;
     @NonNull public final String description;
 
-    public TextViewModel(@NonNull String title, @NonNull String description) {
+    public TextItem(@NonNull String title, @NonNull String description) {
         this.title = title;
         this.description = description;
     }
@@ -122,11 +116,11 @@ Inherit from BaseDelegateAdapter:
 
 ```java
 public class TextDelegateAdapter extends
-    BaseDelegateAdapter<TextDelegateAdapter.TextViewHolder, TextViewModel> {
+    BaseDelegateAdapter<TextDelegateAdapter.TextViewHolder, TextItem> {
 
     @Override
     protected void onBindViewHolder(@NonNull View view,
-                                    @NonNull TextViewModel item,
+                                    @NonNull TextItem item,
                                     @NonNull TextViewHolder viewHolder) {
         viewHolder.tvTitle.setText(item.title);
         viewHolder.tvDescription.setText(item.description);
@@ -145,7 +139,7 @@ public class TextDelegateAdapter extends
 
     @Override
     public boolean isForViewType(@NonNull List<?> items, int position) {
-        return items.get(position) instanceof TextViewModel;
+        return items.get(position) instanceof TextItem;
     }
 
     final static class TextViewHolder extends BaseViewHolder {
