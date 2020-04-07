@@ -3,7 +3,7 @@ package com.livermor.dumchev.delegateadapters.base;
 import com.livermor.delegateadapter.delegate.diff.DiffUtilItem;
 import com.livermor.dumchev.delegateadapters.R;
 import com.livermor.dumchev.delegateadapters.base.model.CheckItem;
-import com.livermor.dumchev.delegateadapters.base.model.CompositeModel;
+import com.livermor.dumchev.delegateadapters.base.model.ConcatenetedModel;
 import com.livermor.dumchev.delegateadapters.base.model.ImageItem;
 import com.livermor.dumchev.delegateadapters.base.model.TextItem;
 
@@ -31,7 +31,7 @@ class MockDataFactory {
             } else if (type == 2) {
                 item = new CheckItem("You still love this lib", true);
             } else {
-                item = new CompositeModel(
+                item = new ConcatenetedModel(
                     new ImageItem("Title " + i, R.mipmap.ic_launcher_round),
                     new TextItem("Title " + i, "Description " + i)
                 );

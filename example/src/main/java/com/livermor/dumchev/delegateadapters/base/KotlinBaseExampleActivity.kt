@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.livermor.delegateadapter.delegate.diff.DiffUtilCompositeAdapter
 import com.livermor.dumchev.delegateadapters.base.adapter.CheckDelegateAdapter
-import com.livermor.dumchev.delegateadapters.base.adapter.CompositeDelegateAdapter
+import com.livermor.dumchev.delegateadapters.base.adapter.ConcatenatingAdapter
 import com.livermor.dumchev.delegateadapters.base.adapter.GenerateItemsDelegateAdapter
 import com.livermor.dumchev.delegateadapters.base.adapter.TextDelegateAdapter
 import kotlinx.android.synthetic.main.activity_base_example.*
@@ -18,7 +18,7 @@ class KotlinBaseExampleActivity : AppCompatActivity() {
                 .add(GenerateItemsDelegateAdapter { generateNewData() })
                 .add(TextDelegateAdapter())
                 .add(CheckDelegateAdapter())
-                .add(CompositeDelegateAdapter(View.OnClickListener { generateNewData() }))
+                .add(ConcatenatingAdapter(View.OnClickListener { generateNewData() }))
                 .build()
     }
 

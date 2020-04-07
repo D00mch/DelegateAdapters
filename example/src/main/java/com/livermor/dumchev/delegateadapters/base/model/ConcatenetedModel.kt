@@ -5,7 +5,7 @@ import com.livermor.delegateadapter.delegate.diff.KDiffUtilItem
 /**
  * @author dumchev on 11/12/2018.
  */
-data class CompositeModel(
+data class ConcatenetedModel(
     val imageViewModel: ImageItem,
     val textViewModel: TextItem
 ) : KDiffUtilItem {
