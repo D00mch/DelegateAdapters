@@ -9,7 +9,5 @@ data class ConcatenetedModel(
     val imageViewModel: ImageItem,
     val textViewModel: TextItem
 ) : KDiffUtilItem {
-
     override val id: Any = "" + imageViewModel.id() + textViewModel.id()
-    override fun content(): Any = this
 }
