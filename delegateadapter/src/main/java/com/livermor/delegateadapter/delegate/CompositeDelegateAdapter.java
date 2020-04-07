@@ -34,7 +34,9 @@ public class CompositeDelegateAdapter<T> extends RecyclerView.Adapter<RecyclerVi
                 return typeToAdapterMap.keyAt(i);
             }
         }
-        throw new NullPointerException("Can not get viewType for position " + position);
+
+        throw new NullPointerException("Provide adapter for type "
+                + data.get(position).getClass() + " at position: " + position);
     }
 
     @Override
