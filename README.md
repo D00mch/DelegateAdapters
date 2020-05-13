@@ -19,7 +19,7 @@ android {
         experimental = true
     }
 }
-implementation 'com.github.liverm0r:delegateadapters:v2.11'
+implementation 'com.github.Liverm0r:delegateadapters:2.11'
 ```
 
 You also have to add this in your project build.gradle
@@ -35,7 +35,7 @@ allprojects {
 
 [![Build Status](https://travis-ci.org/sockeqwe/AdapterDelegates.svg?branch=master)](https://jitpack.io/#Liverm0r/delegateadapters)
 
-## Example of usage in Kotlin
+## Kotlin examples
 
 Write a model, which represents ui data:
 
@@ -91,7 +91,7 @@ See example in code: [KotlinBaseExampleActivity.kt][1]
 
 [1]: https://github.com/Liverm0r/DelegateAdapters/blob/master/example/src/main/java/com/example/dumchev/delegateadapters/base/KotlinBaseExampleActivity.kt
 
-## Example of usage in Java
+## Java examples
 
 Write a Model:
 
