@@ -21,11 +21,6 @@
             android:label="@string/title_activity_base_example"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity
-            android:name="com.livermor.dumchev.delegateadapters.base.KotlinBaseExampleActivity"
-            android:label="@string/title_activity_base_example"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
     </application>
 
 </manifest>

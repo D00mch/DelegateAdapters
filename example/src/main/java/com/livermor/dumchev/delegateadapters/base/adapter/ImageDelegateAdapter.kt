@@ -3,7 +3,7 @@ package com.livermor.dumchev.delegateadapters.base.adapter
 import android.view.View
 import com.livermor.delegateadapter.delegate.KDelegateAdapter
 import com.livermor.dumchev.delegateadapters.R
-import com.livermor.dumchev.delegateadapters.base.model.ImageItem
+import com.livermor.dumchev.delegateadapters.base.ImageItem
 import kotlinx.android.synthetic.main.image_item.*
 
 /**
@@ -19,4 +19,5 @@ class ImageDelegateAdapter(private val clickListener: View.OnClickListener) : KD
 
     override fun isForViewType(item: Any) = item is ImageItem
     override fun getLayoutId(): Int = R.layout.image_item
+    override fun ImageItem.getItemId(): Any = title
 }

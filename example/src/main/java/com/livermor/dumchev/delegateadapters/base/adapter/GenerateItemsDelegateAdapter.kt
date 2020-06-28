@@ -2,11 +2,10 @@ package com.livermor.dumchev.delegateadapters.base.adapter
 
 import com.livermor.delegateadapter.delegate.KDelegateAdapter
 import com.livermor.dumchev.delegateadapters.R
-import com.livermor.dumchev.delegateadapters.base.model.ImageItem
+import com.livermor.dumchev.delegateadapters.base.ImageItem
 import kotlinx.android.synthetic.main.image_item.*
 
-class GenerateItemsDelegateAdapter(private val generateNewItems: () -> Unit) :
-        KDelegateAdapter<ImageItem>() {
+class GenerateItemsDelegateAdapter(private val generateNewItems: () -> Unit) : KDelegateAdapter<ImageItem>() {
 
     override fun KViewHolder.onBind(item: ImageItem) {
         tv_title.text = item.title
@@ -17,4 +16,6 @@ class GenerateItemsDelegateAdapter(private val generateNewItems: () -> Unit) :
     override fun getLayoutId(): Int = R.layout.image_item
 
     override fun isForViewType(item: Any): Boolean = item is ImageItem
+
+    override fun ImageItem.getItemId(): Any = title
 }
