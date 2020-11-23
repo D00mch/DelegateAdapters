@@ -3,12 +3,12 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion compileSdk
+    compileSdkVersion compile_sdk
     buildToolsVersion buildTool
     defaultConfig {
         applicationId "com.example.dumchev.delegateadapters"
-        minSdkVersion minSdk
-        targetSdkVersion targetSdk
+        minSdkVersion min_sdk
+        targetSdkVersion target_sdk
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -19,8 +19,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    androidExtensions {
-        experimental = true
+
+    viewBinding {
+        enabled = true
     }
 }
 
@@ -28,9 +29,9 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':delegateadapter')
     implementation "androidx.recyclerview:recyclerview:$recycler"
-    implementation "androidx.appcompat:appcompat:$androidX"
-    testImplementation 'junit:junit:4.12'
-    implementation "androidx.core:core-ktx:$androidX"
+    implementation "androidx.appcompat:appcompat:$android_x"
+    testImplementation 'junit:junit:4.13'
+    implementation "androidx.core:core-ktx:$core_ktx"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 repositories {

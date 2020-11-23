@@ -6,11 +6,11 @@ apply plugin: 'kotlin-android-extensions'
 group='com.github.Liverm0r'
 
 android {
-    compileSdkVersion compileSdk
+    compileSdkVersion compile_sdk
 
     defaultConfig {
-        minSdkVersion minSdk
-        targetSdkVersion targetSdk
+        minSdkVersion min_sdk
+        targetSdkVersion target_sdk
         versionCode 1
         versionName "1.0"
 
@@ -24,17 +24,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
-    androidExtensions {
-        experimental = true
+    viewBinding {
+        enabled = true
     }
 }
 
 dependencies {
-    implementation "androidx.appcompat:appcompat:$androidX"
+    implementation "androidx.appcompat:appcompat:$android_x"
     implementation "androidx.recyclerview:recyclerview:$recycler"
-    testImplementation 'junit:junit:4.12'
-    implementation "androidx.core:core-ktx:$androidX"
+    testImplementation 'junit:junit:4.13'
+    implementation "androidx.core:core-ktx:$core_ktx"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 repositories {

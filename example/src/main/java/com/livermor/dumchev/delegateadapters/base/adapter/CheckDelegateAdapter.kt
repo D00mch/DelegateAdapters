@@ -1,31 +1,36 @@
 package com.livermor.dumchev.delegateadapters.base.adapter
 
-import androidx.recyclerview.widget.RecyclerView
-import com.livermor.delegateadapter.delegate.KDelegateAdapter
-import com.livermor.dumchev.delegateadapters.R
+import android.util.Log
+import com.livermor.delegateadapter.delegate.ViewBindingDelegateAdapter
 import com.livermor.dumchev.delegateadapters.base.CheckItem
-import kotlinx.android.synthetic.main.check_item.*
+import com.livermor.dumchev.delegateadapters.databinding.CheckItemBinding
 
 /**
  * @author dumchev on 05.11.17.
  */
-class CheckDelegateAdapter : KDelegateAdapter<CheckItem>() {
+class CheckDelegateAdapter : ViewBindingDelegateAdapter<CheckItem, CheckItemBinding>(CheckItemBinding::inflate) {
 
-    override fun KViewHolder.onBind(item: CheckItem) =
-        with(check_box) {
-            text = item.title
-            isChecked = item.isChecked
-            setOnCheckedChangeListener { _, isChecked ->
-                item.isChecked = isChecked
-            }
+    override fun CheckItemBinding.onBind(item: CheckItem) = with(checkBox) {
+        text = item.title
+        isChecked = item.isChecked
+        setOnCheckedChangeListener { _, isChecked ->
+            item.isChecked = isChecked
         }
-
-    override fun onRecycled(holder: RecyclerView.ViewHolder) {
-        (holder as KViewHolder).check_box.setOnCheckedChangeListener(null)
     }
 
     override fun isForViewType(item: Any): Boolean = item is CheckItem
-    override fun getLayoutId(): Int = R.layout.check_item
 
     override fun CheckItem.getItemId(): Any = title
+
+    override fun CheckItemBinding.onRecycled() {
+        checkBox.setOnCheckedChangeListener(null)
+    }
+
+    override fun CheckItemBinding.onAttachedToWindow() {
+        Log.d(CheckDelegateAdapter::class.java.simpleName, "onAttachedToWindow")
+    }
+
+    override fun CheckItemBinding.onDetachedFromWindow() {
+        Log.d(CheckDelegateAdapter::class.java.simpleName, "onDetachedFromWindow")
+    }
 }

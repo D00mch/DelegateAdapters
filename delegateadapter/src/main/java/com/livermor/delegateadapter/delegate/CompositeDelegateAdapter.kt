@@ -8,8 +8,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 /**
  * @author dumchev on 03.11.17.
  */
-open class CompositeDelegateAdapter(vararg adapters: DelegateAdapter)
-    : RecyclerView.Adapter<ViewHolder>() {
+open class CompositeDelegateAdapter(vararg adapters: DelegateAdapter) : RecyclerView.Adapter<ViewHolder>() {
 
     //  Contract is: adapters position is used as ViewType.
     protected open var adapterState = AdaptersState(adapters.toList())
@@ -32,6 +31,14 @@ open class CompositeDelegateAdapter(vararg adapters: DelegateAdapter)
         val diffResult = DiffUtil.calculateDiff(diffCallback)
         adapterState = newAdapterState
         diffResult.dispatchUpdatesTo(this)
+    }
+
+    override fun onViewAttachedToWindow(holder: ViewHolder) {
+        adapterState.getAdapter(holder.itemViewType).onAttachedToWindow(holder)
+    }
+
+    override fun onViewDetachedFromWindow(holder: ViewHolder) {
+        adapterState.getAdapter(holder.itemViewType).onDetachedFromWindow(holder)
     }
 
     override fun getItemCount(): Int = adapterState.data.size
