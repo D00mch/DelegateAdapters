@@ -9,11 +9,11 @@ This lib is inspired by Hannes Dorfmann [AdapterDelegates](https://github.com/so
 ```groovy
 android {
     //...
-    androidExtensions {
-        experimental = true
-    }
+    viewBinding { enabled = true }
 }
-implementation 'com.github.Liverm0r:delegateadapters:3.00'
+dependencies {
+    implementation 'com.github.Liverm0r:delegateadapters:4.0'
+}
 ```
 
 You also have to add this in your project build.gradle
@@ -40,30 +40,25 @@ data class ImageItem(val title: String, @DrawableRes val imageRes: Int)
 Write a delegate adapter:
 
 ```kotlin
-class ImageDelegateAdapter(private val clickListener: View.OnClickListener) : KDelegateAdapter<ImageItem>() {
+class ImageDelegateAdapter(private val clickListener: View.OnClickListener) :
+    ViewBindingDelegateAdapter<ImageItem, ImageItemBinding>(ImageItemBinding::inflate) {
 
-    override fun KViewHolder.onBind(item: ImageItem) {
-        tv_title.text = item.title
-        img_bg.setOnClickListener(clickListener)
-        img_bg.setImageResource(item.imageRes)
+    override fun ImageItemBinding.onBind(item: ImageItem) {
+        tvTitle.text = item.title
+        imgBg.setOnClickListener(clickListener)
+        imgBg.setImageResource(item.imageRes)
     }
 
-    override fun isForViewType(item: Any) = item is ImageItem
-    override fun getLayoutId(): Int = R.layout.image_item
-    override fun ImageItem.getItemId(): Any = title // DiffUtils will use this to know that items are the same
+    override fun isForViewType(item: Any): Boolean = item is ImageItem
+
+    override fun ImageItem.getItemId(): Any = title
 }
 ```
 
-Check `KViewHolder.onBind` part. This works like the basic view holder without creating one. Just override onBind method. See the [View holder pattern support and caching options](
-https://github.com/Kotlin/KEEP/blob/master/proposals/android-extensions-entity-caching.md
-) for more information.
-
-To enable this magic, you need to turn on kotlin ext. experimental feature in your module build.gradle file:
+Check `ImageItemBinding.onBind` part. This works like the basic view holder without creating one. Just override onBind method. For this to work you need to turn on viewBinding:
 
 ```groovy
-androidExtensions {
-    experimental = true
-}
+viewBinding { enabled = true }
 ```
 
 Now you can use DiffUtilCompositeAdapter just like the base RecyclerView.Adapter, composing it with whatever amount of delegate adapters:

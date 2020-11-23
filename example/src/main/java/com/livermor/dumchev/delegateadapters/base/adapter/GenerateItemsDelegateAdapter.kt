@@ -1,19 +1,17 @@
 package com.livermor.dumchev.delegateadapters.base.adapter
 
-import com.livermor.delegateadapter.delegate.KDelegateAdapter
-import com.livermor.dumchev.delegateadapters.R
+import com.livermor.delegateadapter.delegate.ViewBindingDelegateAdapter
 import com.livermor.dumchev.delegateadapters.base.ImageItem
-import kotlinx.android.synthetic.main.image_item.*
+import com.livermor.dumchev.delegateadapters.databinding.ImageItemBinding
 
-class GenerateItemsDelegateAdapter(private val generateNewItems: () -> Unit) : KDelegateAdapter<ImageItem>() {
+class GenerateItemsDelegateAdapter(private val generateNewItems: () -> Unit) :
+    ViewBindingDelegateAdapter<ImageItem, ImageItemBinding>(ImageItemBinding::inflate) {
 
-    override fun KViewHolder.onBind(item: ImageItem) {
-        tv_title.text = item.title
-        img_bg.setImageResource(item.imageRes)
-        itemView.setOnClickListener { generateNewItems() }
+    override fun ImageItemBinding.onBind(item: ImageItem) {
+        tvTitle.text = item.title
+        imgBg.setImageResource(item.imageRes)
+        llRoot.setOnClickListener { generateNewItems() }
     }
-
-    override fun getLayoutId(): Int = R.layout.image_item
 
     override fun isForViewType(item: Any): Boolean = item is ImageItem
 

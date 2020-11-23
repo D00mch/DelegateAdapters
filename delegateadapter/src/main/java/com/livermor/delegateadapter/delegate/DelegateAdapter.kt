@@ -19,4 +19,8 @@ interface DelegateAdapter {
     fun itemId(item: Any): Any
     /** [DiffUtilCallback] uses this to know that two items has the same content */
     fun itemContent(item: Any): Any
+
+    fun onAttachedToWindow(holder: ViewHolder)
+
+    fun onDetachedFromWindow(holder: ViewHolder)
 }
