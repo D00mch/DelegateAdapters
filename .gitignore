@@ -4,7 +4,7 @@ build
 libraries
 
 #IntelliJ IDEA
-.idea
+.idea/
 *.iml
 *.ipr
 *.iws
