@@ -5,14 +5,14 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.livermor.delegateadapter.delegate.CompositeDelegateAdapter
-import com.livermor.dumchev.delegateadapters.R
 import com.livermor.dumchev.delegateadapters.base.adapter.CheckDelegateAdapter
 import com.livermor.dumchev.delegateadapters.base.adapter.GenerateItemsDelegateAdapter
 import com.livermor.dumchev.delegateadapters.base.adapter.TxtDelegateAdapter
-import kotlinx.android.synthetic.main.activity_main.*
+import com.livermor.dumchev.delegateadapters.databinding.ActivityBaseExampleBinding
 
 /**
- * @author dumchev on 28.11.17.
+
+@author dumchev on 28.11.17.
  */
 class BaseExampleActivity : AppCompatActivity() {
 
@@ -21,12 +21,14 @@ class BaseExampleActivity : AppCompatActivity() {
         CheckDelegateAdapter(),
         GenerateItemsDelegateAdapter { generateNewData() }
     )
+    private lateinit var binding: ActivityBaseExampleBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_base_example)
-        rv.layoutManager = LinearLayoutManager(this)
-        rv.adapter = adapter
+        binding = ActivityBaseExampleBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        binding.rv.layoutManager = LinearLayoutManager(this)
+        binding.rv.adapter = adapter
         adapter.swapData(MockDataFactory.prepareData())
     }
 
@@ -36,6 +38,6 @@ class BaseExampleActivity : AppCompatActivity() {
 
     private fun generateNewData() {
         adapter.swapData(MockDataFactory.prepareData())
-        rv.scrollToPosition(0)
+        binding.rv.scrollToPosition(0)
     }
 }
