@@ -1,8 +1,7 @@
 # DelegateAdapters
-Simplify creating recycler view adapters with many different view types.
-This lib is inspired by Hannes Dorfmann [AdapterDelegates](https://github.com/sockeqwe/AdapterDelegates).
+Simplify the creation of `RecyclerView` adapters with different view types with this library, which is inspired by Hannes Dorfmann's [AdapterDelegates](https://github.com/sockeqwe/AdapterDelegates).
 
-[Article](https://habr.com/post/341738/) about it on Russian.
+There is also an [article](https://habr.com/post/341738/) about it in Russian on Habr.
 
 ## Dependencies
 
@@ -16,7 +15,7 @@ dependencies {
 }
 ```
 
-You also have to add this in your project build.gradle
+You will also need to add this to your project's `build.gradle` file: 
 
 ```groovy
 allprojects {
@@ -31,7 +30,7 @@ allprojects {
 
 ## Examples
 
-Write a model, which represents ui data:
+Write a model that represents UI data:
 
 ```kotlin
 data class ImageItem(val title: String, @DrawableRes val imageRes: Int)
@@ -55,13 +54,13 @@ class ImageDelegateAdapter(private val clickListener: View.OnClickListener) :
 }
 ```
 
-Check `ImageItemBinding.onBind` part. This works like the basic view holder without creating one. Just override onBind method. For this to work you need to turn on viewBinding:
+Check out the `ImageItemBinding.onBind` part. This works like a basic view holder without requiring you to create one. Simply override the `onBind` method. Note that for this to work, you need to turn on view binding.
 
 ```groovy
 viewBinding { enabled = true }
 ```
 
-Now you can use DiffUtilCompositeAdapter just like the base RecyclerView.Adapter, composing it with whatever amount of delegate adapters:
+Now you can use the `DiffUtilCompositeAdapter` just like the base `RecyclerView.Adapter`, composing it with any number of delegate adapters:
 
 ```kotlin
     val adapter = CompositeDelegateAdapter(
@@ -73,7 +72,7 @@ Now you can use DiffUtilCompositeAdapter just like the base RecyclerView.Adapter
 
 ![example](https://github.com/Liverm0r/DelegateAdapters/blob/master/feed_example.jpg)
 
-See example in code: [BaseExampleActivity.kt][1]
+See an example in the code: [BaseExampleActivity.kt][1]:
 
 [1]: https://github.com/Liverm0r/DelegateAdapters/blob/master/example/src/main/java/com/livermor/dumchev/delegateadapters/base/BaseExampleActivity.kt
 
