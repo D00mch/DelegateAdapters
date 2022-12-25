@@ -4,7 +4,6 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion compile_sdk
-    buildToolsVersion buildTool
     defaultConfig {
         applicationId "com.example.dumchev.delegateadapters"
         minSdkVersion min_sdk
@@ -30,7 +29,7 @@ dependencies {
     implementation project(':delegateadapter')
     implementation "androidx.recyclerview:recyclerview:$recycler"
     implementation "androidx.appcompat:appcompat:$android_x"
-    testImplementation 'junit:junit:4.13'
+    testImplementation 'junit:junit:4.13.2'
     implementation "androidx.core:core-ktx:$core_ktx"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
