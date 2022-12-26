@@ -25,7 +25,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(':delegateadapter')
+//    implementation project(':delegateadapter')
+    implementation "io.github.d00mch:delegateadapter:4.1"
     implementation "androidx.recyclerview:recyclerview:$recycler"
     implementation "androidx.appcompat:appcompat:$android_x"
     testImplementation 'junit:junit:4.13.2'

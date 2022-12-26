@@ -11,18 +11,7 @@ android {
     viewBinding { enabled = true }
 }
 dependencies {
-    implementation 'com.github.Liverm0r:delegateadapters:4.0'
-}
-```
-
-You will also need to add this to your project's `build.gradle` file: 
-
-```groovy
-allprojects {
-    repositories {
-        //...
-        maven { url 'https://jitpack.io' }
-    }
+    implementation "io.github.d00mch:delegateadapter:4.1"
 }
 ```
 
@@ -77,7 +66,26 @@ See an example in the code: [BaseExampleActivity.kt][1]:
 [1]: https://github.com/Liverm0r/DelegateAdapters/blob/master/example/src/main/java/com/livermor/dumchev/delegateadapters/base/BaseExampleActivity.kt
 
 
-  ## License
+## Release notes
+
+Make sure you have `local.properties` filled with: 
+
+```
+signing.keyId=<pgp key>
+signing.password=<pgp password>
+ossrhUsername=<sonatype login>
+ossrhPassword=...
+sonatypeStagingProfileId=<https://s01.oss.sonatype.org/#stagingProfiles;<THIS ONE!>>
+signing.key=
+```
+
+Run:
+
+```
+./gradlew delegateadapter:publishReleasePublicationToSonatypeRepository closeAndReleaseSonatypeStagingRepository
+```
+
+ ## License
 
 ```
 Copyright 2017 Artur Dumchev 

@@ -1,22 +1,12 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'maven-publish'
 
-group='com.github.Liverm0r'
-
-publishing {
-    publications {
-        release(MavenPublication) {
-            groupId = 'io.github.d00mch'
-            artifactId = 'delegateadapter'
-            version = '4.1'
-
-            afterEvaluate {
-                from components.release
-            }
-        }
-    }
+ext {
+    PUBLISH_GROUP_ID = 'io.github.d00mch'
+    PUBLISH_VERSION = '4.1'
+    PUBLISH_ARTIFACT_ID = 'delegateadapter'
 }
+apply from: 'publish-remote.gradle'
 
 android {
     compileSdkVersion compile_sdk
@@ -48,5 +38,6 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 repositories {
+    google()
     mavenCentral()
 }

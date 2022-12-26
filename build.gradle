@@ -15,6 +15,12 @@ buildscript {
     }
 }
 
+plugins {
+    id("io.github.gradle-nexus.publish-plugin") version "1.1.0"
+}
+
+apply from: 'scripts/publish-root.gradle'
+
 ext {
     min_sdk = "14"
     compile_sdk = 33
