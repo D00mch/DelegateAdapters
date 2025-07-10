@@ -1,5 +1,5 @@
 # DelegateAdapters
-Simplify the creation of `RecyclerView` adapters with different view types with this library, which is inspired by Hannes Dorfmann's [AdapterDelegates](https://github.com/sockeqwe/AdapterDelegates).
+Simplify the creation of `RecyclerView` adapters with different view types using this library, which is inspired by Hannes Dorfmann's [AdapterDelegates](https://github.com/sockeqwe/AdapterDelegates).
 
 There is also an [article](https://habr.com/post/341738/) about it in Russian on Habr.
 
@@ -61,14 +61,14 @@ Now you can use the `DiffUtilCompositeAdapter` just like the base `RecyclerView.
 
 ![example](https://github.com/Liverm0r/DelegateAdapters/blob/master/feed_example.jpg)
 
-See an example in the code: [BaseExampleActivity.kt][1]:
+See an example in the code in [BaseExampleActivity.kt][1].
 
 [1]: https://github.com/Liverm0r/DelegateAdapters/blob/master/example/src/main/java/com/livermor/dumchev/delegateadapters/base/BaseExampleActivity.kt
 
 
 ## Release notes
 
-Make sure you have `local.properties` filled with: 
+Make sure you have `local.properties` filled in with: 
 
 ```
 signing.keyId=<gpg key id>
